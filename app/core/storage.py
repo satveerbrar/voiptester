@@ -1,5 +1,6 @@
 # Add keystore, saved settings, etc. later
 
+
 def save_value(key: str, value: str):
     with open("/tmp/voiptester_storage.txt", "a") as f:
         f.write(f"{key}={value}\n")

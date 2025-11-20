@@ -1,7 +1,7 @@
 from app.core.log import logger
-from app.testsuite.net_link import basic_network_test
-from app.io.oled import OledDisplay
 from app.io.leds_button import LedButtonIO
+from app.io.oled import OledDisplay
+from app.testsuite.net_link import run_network_test
 
 
 def run_state_machine():
@@ -21,9 +21,19 @@ def run_state_machine():
             display.show_message("Running Net Test...")
             io.led_busy()
 
-            result = basic_network_test()
+            result = run_network_test()
 
-            display.show_message(f"IP: {result['ip']}\nPing:{result['ping_status']}")
+            display.show_message(
+                f"Status: {result['status']}"
+                f"\nInterface: {result['interface']}"
+                f"\nPhysical Link Up: {result['physical_link_up']}"
+                f"\nLink State Up: {result["link_state_up"]}"
+                f"\nLink Speed: {result['link_speed']}"
+                f"\nIP: {result['ip_address']}"
+                f"\nGateway:{result['gateway']}"
+                f"\nDNS OK: {result['dns_ok']}"
+                f"\nIP Source: {result['ip_source']}"
+            )
             io.led_success()
 
         elif event == "double":

@@ -2,6 +2,7 @@ class LedButtonIO:
     def __init__(self):
         try:
             import RPi.GPIO as GPIO
+
             self.gpio_enabled = True
             GPIO.setmode(GPIO.BCM)
             # setup pins here later
